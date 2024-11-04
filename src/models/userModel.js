@@ -1,8 +1,8 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 
-const { Schema, default: mongoose } = require("mongoose");
+// const { Schema, default: mongoose } = require("mongoose");
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Please provide username"],
@@ -34,6 +34,5 @@ const userSchema = new Schema({
 const User = mongoose.models.users || mongoose.model("users", userSchema);
 //   mongoose.models.users ||  <-- this will check before creation of model.
 
-module.exports = User;
+export default User;
 
-// export default User;

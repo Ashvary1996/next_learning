@@ -1,28 +1,22 @@
 import mongoose from "mongoose";
-import { prependOnceListener } from "process";
 
-const connectToDb = async () => {
+export async function connectToDb() {
   try {
-    const connection = () => {
-      mongoose.connect(process.env.MONGO_URI!);
+    mongoose.connect(process.env.MONGO_URI!);
 
-      const connection = mongoose.connection;
+    const connection = mongoose.connection;
 
-      connection.on("connected", () => {
-        console.log("Mongo Db Connected Successfully");
-      });
-      connection.on("error", (err) => {
-        console.log(
-          "Mongodb connection error, please make sure db is up and running" +
-            err
-        );
-        process.exit();
-      });
-    };
+    connection.on("connected", () => {
+      console.log("Mongo Db Connected Successfully");
+    });
+    connection.on("error", (err) => {
+      console.log(
+        "Mongodb connection error, please make sure db is up and running" + err
+      );
+      process.exit();
+    });
   } catch (error) {
     console.log("Something went wrong in connecting to database");
     console.log(error);
   }
-};
-
-export default connectToDb;
+}

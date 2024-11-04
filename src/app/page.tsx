@@ -96,6 +96,10 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+
+
+   
+     
     </div>
   );
 }
