@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     console.log("user Found", user);
 
-    const validatePassword = bcrypt.compare(password, user.password);
+    const validatePassword = await bcrypt.compare(password, user.password);
 
     if (!validatePassword) {
       return NextResponse.json(
@@ -59,12 +59,12 @@ export async function POST(request: NextRequest) {
     response.cookies.set("token", token, {
       httpOnly: true,
     });
-    
+
     return response;
   } catch (error: any) {
     return NextResponse.json({
       status: 500,
-      error: error.messsage,
+      error: error.message,
     });
   }
 }
